@@ -1,0 +1,6 @@
+server:
+  port: 90
+
+application:
+  id: ${ID_ENV:2}
+  name: test

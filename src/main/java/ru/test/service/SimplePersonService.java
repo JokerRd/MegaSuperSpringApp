@@ -1,6 +1,7 @@
 package ru.test.service;
 
 import org.springframework.stereotype.Service;
+import ru.test.dto.PersonDto;
 import ru.test.integration.PersonExternalSource;
 import ru.test.model.Person;
 import ru.test.repository.PersonRepository;
@@ -40,6 +41,26 @@ public class SimplePersonService implements PersonService {
         personRepository.save(person);
 
         return success(id);
+    }
+
+    @Override
+    public PersonDto get(long id) {
+        var person = personRepository.read(id);
+        if (person == null) {
+            return null;
+        }
+        return new PersonDto(person.getId(), person.getName(), person.getAge());
+    }
+
+    @Override
+    public Long updatePerson(PersonDto personInfo) {
+        var person = new Person(personInfo.getId(), personInfo.getName(), personInfo.getAge());
+        return personRepository.save(person);
+    }
+
+    @Override
+    public void deletePerson(long id) {
+        personRepository.delete(id);
     }
 
     private boolean isValid(PersonInfo personInfo) {

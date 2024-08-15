@@ -1,7 +1,16 @@
 package ru.test.service;
 
-import org.springframework.stereotype.Service;
+import ru.test.configuration.ApplicationProperties;
 
-@Service
 public class Service2 {
+
+    private final ApplicationProperties applicationProperties;
+
+    public Service2(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
+    }
+
+    public ApplicationProperties getApplicationProperties() {
+        return applicationProperties;
+    }
 }

@@ -7,6 +7,7 @@ import ru.test.connections.Driver;
 import ru.test.model.Person;
 import ru.test.repository.PersonRepository;
 import ru.test.repository.SimplePersonRepository;
+import ru.test.service.Service2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,9 @@ public class ConfigurationApp {
     @Bean
     public Map<Long, Person> personMap() {
         System.out.println("personMap");
-        return new HashMap<>();
+        Map<Long, Person> map = new HashMap<>();
+        map.put(1L, new Person(1L, "Федор", 17));
+        return map;
     }
 
     @Bean
@@ -26,4 +29,9 @@ public class ConfigurationApp {
         return new SimplePersonRepository(driver, personMap());
     }
 
+
+    @Bean
+    public Service2 service2(ApplicationProperties applicationProperties) {
+        return new Service2(applicationProperties);
+    }
 }
