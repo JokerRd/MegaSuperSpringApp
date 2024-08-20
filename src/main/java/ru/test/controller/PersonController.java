@@ -7,6 +7,9 @@ import ru.test.service.PersonService;
 import ru.test.type.PersonInfo;
 import ru.test.type.ResultRegisterPerson;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
 @RestController
 @RequestMapping("/person")
 public class PersonController {
@@ -17,17 +20,13 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/{id}")
-    public PersonDto getPerson(@PathVariable long id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("id must be a positive integer");
-        }
-
+    @GetMapping()
+    public PersonDto getPerson(@Valid @Min(1) @RequestParam Long id) {
         return personService.get(id);
     }
 
     @PostMapping("/")
-    public ResultRegisterPerson createPerson(@RequestBody PersonInfo personInfo) {
+    public ResultRegisterPerson createPerson(@Valid @RequestBody PersonInfo personInfo) {
         return personService.registerPerson(personInfo);
     }
 

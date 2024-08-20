@@ -3,6 +3,7 @@ package ru.test.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import ru.test.connections.Driver;
 import ru.test.model.Person;
 import ru.test.repository.PersonRepository;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @Configuration
 public class ConfigurationApp {
+
 
     @Bean
     public Map<Long, Person> personMap() {

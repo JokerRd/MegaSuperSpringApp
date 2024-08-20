@@ -1,14 +1,22 @@
 package ru.test.type;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class PersonInfo {
 
+    @NotNull
+    @NotEmpty
     private final String name;
-    private final int age;
+
+    @Min(10)
+    private final Integer age;
+
     private final LocalDate birthday;
 
-    public PersonInfo(String name, int age, LocalDate birthday) {
+    public PersonInfo(String name, Integer age, LocalDate birthday) {
         this.name = name;
         this.age = age;
         this.birthday = birthday;
