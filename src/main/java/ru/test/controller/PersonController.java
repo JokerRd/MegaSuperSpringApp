@@ -1,5 +1,6 @@
 package ru.test.controller;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.test.dto.IdDto;
 import ru.test.dto.PersonDto;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
+@Validated
 @RequestMapping("/person")
 public class PersonController {
 
@@ -21,7 +23,7 @@ public class PersonController {
     }
 
     @GetMapping()
-    public PersonDto getPerson(@Valid @Min(1) @RequestParam Long id) {
+    public PersonDto getPerson(@Min(1) @RequestParam Long id) {
         return personService.get(id);
     }
 

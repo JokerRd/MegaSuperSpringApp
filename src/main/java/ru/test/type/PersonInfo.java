@@ -1,10 +1,13 @@
 package ru.test.type;
 
+import ru.test.validation.ValidBirthday;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@ValidBirthday(nameField = "birthday")
 public class PersonInfo {
 
     @NotNull
