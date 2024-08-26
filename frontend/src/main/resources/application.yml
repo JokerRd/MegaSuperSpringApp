@@ -1,0 +1,15 @@
+server:
+  servlet:
+    encoding:
+      force-response: true
+      force: true
+n2o:
+  application:
+    id: main
+  config:
+    monitoring:
+      enabled: true
+
+
+app:
+  const: 'Привет'

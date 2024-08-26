@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<application xmlns="http://n2oapp.net/framework/config/schema/application-3.0">
+  <sidebars>
+    <sidebar title="Мое приложение">
+      <nav>
+        <menu-item>
+          <open-page page-id="menu1" route="/first"/>
+        </menu-item>
+        <menu-item>
+          <open-page page-id="menu2" route="/second"/>
+        </menu-item>
+      </nav>
+      <extra-menu>
+        <menu-item name="Внешняя ссылка">
+          <a href="http://example.com"/>
+        </menu-item>
+      </extra-menu>
+    </sidebar>
+  </sidebars>
+</application>
