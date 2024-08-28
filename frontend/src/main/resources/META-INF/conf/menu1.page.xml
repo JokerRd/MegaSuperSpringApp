@@ -3,31 +3,32 @@
              name="Первая страница">
   <datasources>
     <datasource id="tableData" query-id="table"/>
-    <datasource id="formData" query-id="form">
-      <filters>
-        <eq field-id="id" value="4"/>
-      </filters>
-    </datasource>
   </datasources>
   <regions>
-    <form datasource="formData">
-      <fields>
-        <output-text id="name"/>
-        <output-text id="date"/>
-        <input-text id="test" default-value="${app.const}"/>
-      </fields>
-    </form>
-    <table selection="none" datasource="tableData">
-<!--      <datasource query-id="data" size="3"/>-->
+    <table datasource="tableData">
       <filters>
         <input-text id="id" label="Фильтр по id"/>
       </filters>
       <columns>
         <column text-field-id="id" label="№"/>
-        <column text-field-id="nameT" label="Фамилия И.О"/>
+        <column text-field-id="name" label="Фамилия И.О"/>
         <column text-field-id="date" label="Дата рождения"/>
       </columns>
+      <rows>
+        <click>
+          <open-page page-id="card" route="/card/:id" target="newWindow">
+            <params>
+              <path-param name="id" value="{id}"/>
+            </params>
+          </open-page>
+        </click>
+      </rows>
       <pagination/>
+      <toolbar>
+        <button id="create" label="Добавить человека">
+          <show-modal page-id="modal" route="/create"/>
+        </button>
+      </toolbar>
     </table>
   </regions>
 </page>

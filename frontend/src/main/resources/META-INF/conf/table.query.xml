@@ -11,7 +11,7 @@
   </filters>
   <fields>
     <field id="id"/>
-    <field id="nameT" mapping="['name']" normalize="#this.substring(1, 2)"/>
+    <field id="name"/>
     <field id="date"/>
   </fields>
 </query>

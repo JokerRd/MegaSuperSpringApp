@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<object xmlns="http://n2oapp.net/framework/config/schema/object-4.0">
+  <operations>
+    <operation id="create" name="Создание">
+      <invocation>
+        <test file="META-INF/conf/data.json" operation="create"/>
+      </invocation>
+      <in>
+        <field id="id"/>
+        <field id="date" normalize="#date(#this)"/>
+        <field id="gender"/>
+        <field id="name"/>
+      </in>
+      <out>
+        <field id="id"/>
+      </out>
+    </operation>
+  </operations>
+</object>

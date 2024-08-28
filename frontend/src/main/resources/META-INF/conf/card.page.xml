@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<page xmlns="http://n2oapp.net/framework/config/schema/page-4.0"
+      name="Первая страница">
+  <datasources>
+    <datasource id="formData" query-id="form">
+      <filters>
+        <eq field-id="id" param="id" required="true"/>
+      </filters>
+    </datasource>
+  </datasources>
+  <regions>
+    <form datasource="formData">
+      <fields>
+        <output-text id="id" label="id"/>
+        <output-text id="name" label="Имя"/>
+        <output-text id="date" label="Дата рождения"/>
+        <output-text id="gender.name" label="Пол"/>
+      </fields>
+    </form>
+  </regions>
+</page>
