@@ -29,12 +29,12 @@ public class SimplePersonService implements PersonService {
 
     @Override
     public ResultRegisterPerson registerPerson(PersonInfo personInfo) {
-        if (!isValid(personInfo)) {
-            return error("Указаны неверные данные");
-        }
-        if (!personExternalSource.isTrustedPerson(personInfo.getName(), personInfo.getAge())) {
-            return error("Переданные данные не являются подтвержденными");
-        }
+//        if (!isValid(personInfo)) {
+//            return error("Указаны неверные данные");
+//        }
+//        if (!personExternalSource.isTrustedPerson(personInfo.getName(), personInfo.getAge())) {
+//            return error("Переданные данные не являются подтвержденными");
+//        }
 
         var id = idService.getNextId();
         var person = new Person(id, personInfo.getName(), personInfo.getAge());

@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 @RestController
-@Validated
 @RequestMapping("/person")
 public class PersonController {
 
@@ -28,7 +27,7 @@ public class PersonController {
     }
 
     @PostMapping("/")
-    public ResultRegisterPerson createPerson(@Valid @RequestBody PersonInfo personInfo) {
+    public ResultRegisterPerson createPerson(@RequestBody PersonInfo personInfo) {
         return personService.registerPerson(personInfo);
     }
 

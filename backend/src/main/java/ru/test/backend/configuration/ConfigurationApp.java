@@ -3,6 +3,8 @@ package ru.test.backend.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import ru.test.backend.connections.Driver;
 import ru.test.backend.model.Person;
 import ru.test.backend.repository.PersonRepository;
@@ -24,15 +26,14 @@ public class ConfigurationApp {
         return map;
     }
 
-    @Bean
-    @Scope("prototype")
-    public PersonRepository personRepository(Driver driver) {
-        return new SimplePersonRepository(driver, personMap());
-    }
-
 
     @Bean
     public Service2 service2(ApplicationProperties applicationProperties) {
         return new Service2(applicationProperties);
+    }
+
+    @Bean
+    public SimpleJdbcInsert simpleJdbcInsertPerson(JdbcTemplate jdbcTemplate) {
+        return new SimpleJdbcInsert(jdbcTemplate).withTableName("persons");
     }
 }

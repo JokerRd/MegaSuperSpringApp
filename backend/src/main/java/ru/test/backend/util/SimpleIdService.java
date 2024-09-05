@@ -17,6 +17,6 @@ public class SimpleIdService implements IdService {
 
     @Override
     public Long getNextId() {
-        return random.nextLong();
+        return (long) random.nextInt(100) ;
     }
 }

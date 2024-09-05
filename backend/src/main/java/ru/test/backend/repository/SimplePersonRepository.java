@@ -1,34 +1,40 @@
 package ru.test.backend.repository;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 import ru.test.backend.EntityNotFoundException;
 import ru.test.backend.connections.Driver;
+import ru.test.backend.mapper.PersonMapper;
+import ru.test.backend.mapper.PersonRowMapper;
 import ru.test.backend.model.Person;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-//@Repository
-//@Scope("prototype")
+@Repository
+@RequiredArgsConstructor
 public class SimplePersonRepository implements PersonRepository {
 
     private final Driver driver;
-
     private final Map<Long, Person> personMap;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert simpleJdbcInsertPerson;
+    private final PersonMapper personMapper;
 
-    public SimplePersonRepository(Driver driver, Map<Long, Person> personMap) {
-        this.driver = driver;
-        this.personMap = personMap;
-    }
 
     @Override
     public Long save(Person person) {
-        personMap.put(person.getId(), person);
+        Map<String, Object> parameters = personMapper.toMap(person);
+        simpleJdbcInsertPerson.execute(parameters);
         return person.getId();
     }
 
     @Override
     public Person read(Long id) {
-        return personMap.get(id);
+        return jdbcTemplate.queryForObject("select * from persons where id = ?",
+                new PersonRowMapper(), id);
     }
 
     @Override
@@ -51,6 +57,6 @@ public class SimplePersonRepository implements PersonRepository {
 
     @Override
     public List<Person> getAll() {
-        return new ArrayList<>(personMap.values());
+        return jdbcTemplate.query("select * from persons", new PersonRowMapper());
     }
 }
