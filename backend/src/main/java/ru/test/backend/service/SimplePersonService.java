@@ -36,31 +36,29 @@ public class SimplePersonService implements PersonService {
 //            return error("Переданные данные не являются подтвержденными");
 //        }
 
-        var id = idService.getNextId();
-        var person = new Person(id, personInfo.getName(), personInfo.getAge());
-        personRepository.save(person);
+        var person = new Person(null, personInfo.getName(), personInfo.getAge(), null, null);
+        person = personRepository.save(person);
 
-        return success(id);
+        return success(person.getId());
     }
 
     @Override
     public PersonDto get(long id) {
-        var person = personRepository.read(id);
-        if (person == null) {
-            return null;
-        }
-        return new PersonDto(person.getId(), person.getName(), person.getAge());
+        return personRepository
+                .findById(id)
+                .map(person -> new PersonDto(person.getId(), person.getName(), person.getAge()))
+                .orElse(null);
     }
 
     @Override
     public Long updatePerson(PersonDto personInfo) {
-        var person = new Person(personInfo.getId(), personInfo.getName(), personInfo.getAge());
-        return personRepository.save(person);
+        var person = new Person(personInfo.getId(), personInfo.getName(), personInfo.getAge(), null, null);
+        return personRepository.save(person).getId();
     }
 
     @Override
     public void deletePerson(long id) {
-        personRepository.delete(id);
+        personRepository.deleteById(id);
     }
 
     private boolean isValid(PersonInfo personInfo) {

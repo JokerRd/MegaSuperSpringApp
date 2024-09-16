@@ -17,12 +17,15 @@ public class PersonController {
 
     private final PersonService personService;
 
+    private int count = 0;
+
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
     @GetMapping()
     public PersonDto getPerson(@Min(1) @RequestParam Long id) {
+        count++;
         return personService.get(id);
     }
 

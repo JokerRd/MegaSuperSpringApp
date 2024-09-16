@@ -22,7 +22,7 @@ public class ConfigurationApp {
     public Map<Long, Person> personMap() {
         System.out.println("personMap");
         Map<Long, Person> map = new HashMap<>();
-        map.put(1L, new Person(1L, "Федор", 17));
+        map.put(1L, new Person(1L, "Федор", 17, null, null));
         return map;
     }
 

@@ -13,7 +13,7 @@ public class PersonRowMapper implements RowMapper<Person> {
         var id = rs.getLong("id");
         var name = rs.getString("name");
         var age = rs.getInt("age");
-        return new Person(id, name, age);
+        return new Person(id, name, age, null, null);
     }
 
 }
