@@ -5,4 +5,6 @@ import ru.test.backend.model.Hobby;
 import ru.test.backend.model.Person;
 
 public interface HobbyRepository extends JpaRepository<Hobby, Long> {
+
+
 }

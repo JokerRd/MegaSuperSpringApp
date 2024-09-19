@@ -1,6 +1,8 @@
 package ru.test.backend.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.test.backend.dto.PersonDto;
 import ru.test.backend.integration.PersonExternalSource;
 import ru.test.backend.model.Person;
@@ -9,25 +11,18 @@ import ru.test.backend.type.PersonInfo;
 import ru.test.backend.type.ResultRegisterPerson;
 import ru.test.backend.util.IdService;
 
-import static ru.test.backend.type.ResultRegisterPerson.error;
 import static ru.test.backend.type.ResultRegisterPerson.success;
 
 @Service
+@RequiredArgsConstructor
 public class SimplePersonService implements PersonService {
 
     private final PersonExternalSource personExternalSource;
     private final PersonRepository personRepository;
     private final IdService idService;
 
-    public SimplePersonService(PersonExternalSource personExternalSource,
-                               PersonRepository personRepository,
-                               IdService idService) {
-        this.personExternalSource = personExternalSource;
-        this.personRepository = personRepository;
-        this.idService = idService;
-    }
-
     @Override
+    @Transactional
     public ResultRegisterPerson registerPerson(PersonInfo personInfo) {
 //        if (!isValid(personInfo)) {
 //            return error("Указаны неверные данные");
@@ -35,11 +30,14 @@ public class SimplePersonService implements PersonService {
 //        if (!personExternalSource.isTrustedPerson(personInfo.getName(), personInfo.getAge())) {
 //            return error("Переданные данные не являются подтвержденными");
 //        }
-
         var person = new Person(null, personInfo.getName(), personInfo.getAge(), null, null);
         person = personRepository.save(person);
-
+        doIt();
         return success(person.getId());
+    }
+
+    private void doIt() {
+        throw new RuntimeException();
     }
 
     @Override

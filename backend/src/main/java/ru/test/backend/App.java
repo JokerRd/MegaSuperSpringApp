@@ -2,6 +2,7 @@ package ru.test.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.test.backend.controller.TestController;
 import ru.test.backend.model.Dog;
 import ru.test.backend.model.Hobby;
 import ru.test.backend.model.Person;
@@ -36,5 +37,7 @@ public class App {
         var personFromRepository = repository.findById(person.getId()).orElse(null);
         System.out.println(personFromRepository);
         System.out.println(repository.findByDogs_Id(6L));
+//        var testController = context.getBean(TestController.class);
+//        System.out.println(testController.test(1));
     }
 }

@@ -6,7 +6,7 @@ application:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         enable_lazy_load_no_trans: true

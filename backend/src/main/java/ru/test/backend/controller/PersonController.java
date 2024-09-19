@@ -2,6 +2,7 @@ package ru.test.backend.controller;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.test.backend.aop.LogRequest;
 import ru.test.backend.service.PersonService;
 import ru.test.backend.dto.IdDto;
 import ru.test.backend.dto.PersonDto;
