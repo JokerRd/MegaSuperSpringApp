@@ -9,14 +9,10 @@ import java.util.Random;
 public class SimpleIdService implements IdService {
 
     private final Random random = new Random();
-    private final Service1 service1;
 
-    public SimpleIdService(Service1 service1) {
-        this.service1 = service1;
-    }
 
     @Override
     public Long getNextId() {
-        return (long) random.nextInt(100) ;
+        return (long) random.nextInt(100);
     }
 }

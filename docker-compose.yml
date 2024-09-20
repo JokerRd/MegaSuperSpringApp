@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  app:
+    image: test/app
+    container_name: app
+    depends_on:
+      - db
+    build:
+      context: .
+    ports:
+      - "8080:90"
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/postgres
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres:
